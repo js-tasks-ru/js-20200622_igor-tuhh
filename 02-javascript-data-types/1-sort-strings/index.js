@@ -6,24 +6,24 @@
  */
 export function sortStrings(arr, param = 'asc') {
 
-  let clonedArray = arr.slice(0);
-  let sortingType = param === 'desc' ? 1 : -1;
+  const clonedArray = [...arr];
+  const sortingType = param === 'desc' ? 1 : -1;
   quickSort(clonedArray, 0, arr.length - 1);
   return clonedArray;
 
   function quickSort(array, low, high) {
     if (low < high) {
-      let partition = getPartition(array, low, high);
+      const partition = getPartition(array, low, high);
       quickSort(array, low, partition - 1);
       quickSort(array, partition + 1, high);
     }
   }
   
   function getPartition(array, low, high) {
-    let pivot = array[high];
+    const pivot = array[high];
     let i = low;
     for (let j = low; j < high; j++) {
-      if (array[j].localeCompare(pivot, 'int', {caseFirst: "upper"}) == sortingType) {
+      if (array[j].localeCompare(pivot, undefined, {caseFirst: "upper"}) === sortingType) {
         swap(array, i, j);
         i = i + 1;
       }
@@ -34,7 +34,7 @@ export function sortStrings(arr, param = 'asc') {
   }
     
   function swap(array, i, j) {
-    let temp = array[i];
+    const temp = array[i];
     array[i] = array[j];
     array[j] = temp;
   }
