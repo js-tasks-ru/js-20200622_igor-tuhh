@@ -4,5 +4,5 @@
  * @returns {*[]} - the new array with uniq values
  */
 export function uniq(arr) {
-
+  return !arr ? [] : arr.filter((value, index) => arr.indexOf(value) === index);
 }
