@@ -5,7 +5,7 @@
  */
 export function invertObj(obj) {
 
-  if (!obj || obj.length === 0) {
+  if (!obj || !obj.length) {
     return undefined;
   }
 
