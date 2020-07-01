@@ -5,9 +5,10 @@
  */
 export function createGetter(path) {
   // array.splice is needed for performance reasons, so we make the array shorter at the place where no further nested properties could be found (it breaks reduce())
+  const pathAsArray = path.split(".");
   return (obj) =>
-    path.split('.').reduce((accumulator, currentValue, index, array) => {
-      if (typeof accumulator !== 'object' || !accumulator[currentValue]) {
+    [...pathAsArray].reduce((accumulator, currentValue, index, array) => {
+      if (typeof accumulator !== "object" || !accumulator[currentValue]) {
         array.splice(index);
         return undefined;
       }
