@@ -16,7 +16,7 @@ export default class ColumnChart {
     this.render();
   }
 
-  update({ bodyData = [] } = {}) {
+  update = ({ bodyData = [] } = {}) => {
     this.data = bodyData;
   }
 
@@ -29,7 +29,7 @@ export default class ColumnChart {
       .join("");
   }
 
-  render() {
+  render = () => {
     this.element.className = !this.data.length
       ? "column-chart_loading"
       : "column-chart";
@@ -45,11 +45,11 @@ export default class ColumnChart {
   </div>`;
   }
 
-  remove() {
+  remove = () => {
     this.element.remove();
   }
 
-  destroy() {
+  destroy = () => {
     this.remove();
   }
 
