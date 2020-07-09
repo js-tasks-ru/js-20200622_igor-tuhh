@@ -12,34 +12,16 @@ export default class SortableTable {
   }
 
   initHeaderElement() {
-    const records = this.getRecords(
-      this.headerData,
-      this.getHeaderCellTemplate
-    );
-    this.initElement(
-      this._headerElement,
-      "header",
-      ["sortable-table__header", "sortable-table__row"],
-      records
-    );
+    const records = this.getRecords(this.headerData, this.getHeaderCellTemplate);
+    this.initElement(this._headerElement, "header", ["sortable-table__header", "sortable-table__row"], records);
   }
 
   initBodyElement() {
-    this.initElement(
-      this._bodyElement,
-      "body",
-      ["sortable-table__body"],
-      this.getRecords(this.data, this.getBodyRecordTemplate)
-    );
+    this.initElement(this._bodyElement, "body", ["sortable-table__body"], this.getRecords(this.data, this.getBodyRecordTemplate));
   }
 
   initLoadingElement() {
-    this.initElement(
-      this._loadingElement,
-      "loading",
-      ["loading-line", "sortable-table__loading-line"],
-      ""
-    );
+    this.initElement(this._loadingElement, "loading", ["loading-line", "sortable-table__loading-line"], "");
   }
 
   initEmptyPlaceholderElement() {
@@ -47,12 +29,7 @@ export default class SortableTable {
     <p>No products satisfies your filter criteria</p>
     <button type="button" class="button-primary-outline">Reset all filters</button>
     </div>`;
-    this.initElement(
-      this._emptyPlaceholderElement,
-      "emptyPlaceholder",
-      ["sortable-table__empty-placeholder"],
-      html
-    );
+    this.initElement(this._emptyPlaceholderElement, "emptyPlaceholder", ["sortable-table__empty-placeholder"], html);
   }
 
   initElement(element = new HTMLDivElement(), attr, cssClass, html) {
@@ -62,11 +39,9 @@ export default class SortableTable {
   }
 
   getRecords(array, delegate, args) {
-    return array
-      .map((record) => {
-        return delegate.bind(this)(record, args);
-      })
-      .join("");
+    return array.map((record) => {
+      return delegate.bind(this)(record, args);
+    }).join("");
   }
 
   getHeaderCellTemplate(record) {
@@ -114,7 +89,6 @@ export default class SortableTable {
 
   render() {
     this.tableElement = document.createElement("div");
-    this.tableElement.innerHTML = "";
     this.tableElement.classList.add("sortable-table");
 
     this.initHeaderElement();
@@ -122,7 +96,7 @@ export default class SortableTable {
     this.initLoadingElement();
     this.initEmptyPlaceholderElement();
 
-    for (let [name, subElement] of Object.entries(this.subElements)) {
+    for (let subElement of Object.values(this.subElements)) {
       this.tableElement.appendChild(subElement);
     }
 
