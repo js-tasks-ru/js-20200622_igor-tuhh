@@ -30,6 +30,7 @@ module.exports = {
     'camelcase': 'warn',
 
     'indent': ['warn', 2, {
+      "SwitchCase": 1,
       // continuation indent
       MemberExpression: 'off',
     }],
@@ -55,7 +56,7 @@ module.exports = {
     'new-parens': 'warn',
     'no-nested-ternary': 'warn',
     'space-infix-ops': 'warn',
-    'space-unary-ops': ['warn', {words: true, nonwords: false}],
+    'space-unary-ops': ['warn', { words: true, nonwords: false }],
 
     // ES2015
     'constructor-super': 'warn',
