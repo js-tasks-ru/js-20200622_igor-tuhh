@@ -100,10 +100,12 @@ export default class SortableTable {
     const sortingFactor = orderValue === "desc" ? -1 : 1;
 
     this.data.sort((a, b) => {
-      if (typeof a[fieldValue] === "string") {
-        return (a[fieldValue].localeCompare(b[fieldValue], "ru-RU", { caseFirst: "upper" }) * sortingFactor);
-      } else {
-        return (a[fieldValue] - b[fieldValue]) * sortingFactor;
+      switch (typeof a[fieldValue]) {
+        case "string":
+          return (a[fieldValue].localeCompare(b[fieldValue], "ru-RU", { caseFirst: "upper" }) * sortingFactor);
+        case "number":
+        default:
+          return (a[fieldValue] - b[fieldValue]) * sortingFactor;
       }
     });
 
