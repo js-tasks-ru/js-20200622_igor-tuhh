@@ -1,5 +1,6 @@
 export default class NotificationMessage {
   element = document.createElement("div");
+  static instance = null;
 
   constructor(message, { duration = 20, type = "success" } = {}) {
     if (NotificationMessage.instance) {
@@ -13,9 +14,7 @@ export default class NotificationMessage {
     this.render();
   }
 
-  static instance = null;
-
-  get Template() {
+  get template() {
     return `
     <div class="timer"></div>
     <div class="inner-wrapper">
@@ -26,14 +25,14 @@ export default class NotificationMessage {
     </div>`;
   }
 
-  show(target = document.querySelector('body')) {
-    target.appendChild(this.element);
+  show(target = document.body) {
+    target.append(this.element);
     setTimeout(() => this.destroy(), this.duration);
   }
 
   render() {
-    this.element.innerHTML = this.Template;
-    this.element.style = `--value:${this.duration}`;
+    this.element.innerHTML = this.template;
+    this.element.style = `--value:${this.duration}ms`;
     this.element.classList.add("notification", `${this.type}`);
   }
 

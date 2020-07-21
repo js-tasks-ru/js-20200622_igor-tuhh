@@ -97,13 +97,13 @@ export default class SortableTable {
     this.initEmptyPlaceholderElement();
 
     for (let subElement of Object.values(this.subElements)) {
-      this.tableElement.appendChild(subElement);
+      this.tableElement.append(subElement);
     }
 
     this.element.innerHTML = "";
     this.element.classList.add("products-list__container");
     this.element.setAttribute("data-element", "productsContainer");
-    this.element.appendChild(this.tableElement);
+    this.element.append(this.tableElement);
   }
 
   subElements = {
