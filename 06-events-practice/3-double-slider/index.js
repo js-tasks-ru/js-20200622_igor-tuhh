@@ -50,11 +50,11 @@ export default class DoubleSlider {
 
   onPointerMove = (event) => {
     event.preventDefault();
-    let x = event.clientX;
+    const clientX = event.clientX;
 
     if (this.currentTarget === this.subElements.thumbRightElement) {
 
-      let rightSidePercent = this.getRightSidePercent(x);
+      let rightSidePercent = this.getRightSidePercent(clientX);
       const leftSidePercent = parseFloat(this.subElements.thumbLeftElement.style.left);
 
       if (rightSidePercent + leftSidePercent > 100) {
@@ -68,7 +68,7 @@ export default class DoubleSlider {
     }
     else if (this.currentTarget === this.subElements.thumbLeftElement) {
 
-      let leftPercent = this.getLeftSidePercent(x);
+      let leftPercent = this.getLeftSidePercent(clientX);
       const rightSidePercent = parseFloat(this.subElements.thumbRightElement.style.right);
 
       if (leftPercent + rightSidePercent > 100) {

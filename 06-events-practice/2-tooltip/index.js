@@ -13,9 +13,9 @@ class Tooltip {
     this.initEventListeners();
   }
 
-  onPointOver = (event) => {
+  onPointOver = ({ target }) => {
 
-    const target = event.target.closest("[data-tooltip]");
+    const target = target.closest("[data-tooltip]");
     if (!target) {
       return;
     }
@@ -25,9 +25,9 @@ class Tooltip {
   }
 
 
-  onPointOut = (event) => {
+  onPointOut = ({ target }) => {
 
-    if (!event.target.closest("[data-tooltip]")) {
+    if (!target.closest("[data-tooltip]")) {
       return;
     }
 
