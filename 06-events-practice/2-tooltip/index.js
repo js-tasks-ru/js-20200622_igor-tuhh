@@ -15,12 +15,12 @@ class Tooltip {
 
   onPointOver = ({ target }) => {
 
-    const target = target.closest("[data-tooltip]");
+    const tooltipElement = target.closest("[data-tooltip]");
     if (!target) {
       return;
     }
 
-    this.render(target.dataset.tooltip);
+    this.render(tooltipElement.dataset.tooltip);
     document.addEventListener("pointermove", this.onPointMove);
   }
 
