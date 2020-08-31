@@ -64,7 +64,7 @@ describe('async-code-fetch-api-part-1/sortable-table-v3', () => {
     sortableTable = null;
   });
 
-  it('should be rendered correctly', async() => {
+  it('should be rendered correctly', async () => {
     document.body.append(sortableTable.element);
 
     expect(sortableTable.element).toBeVisible();
@@ -78,7 +78,7 @@ describe('async-code-fetch-api-part-1/sortable-table-v3', () => {
   });
 
 
-  it('should render loaded data correctly', async() => {
+  it('should render loaded data correctly', async () => {
     fetchMock.mockResponseOnce(JSON.stringify(data));
 
     await sortableTable.render();
@@ -94,7 +94,7 @@ describe('async-code-fetch-api-part-1/sortable-table-v3', () => {
     expect(row3).toHaveTextContent('13.3\" Ультрабук ASUS VivoBook S13 S330FA-EY127T серебристый');
   });
 
-  it('should sort data correctly', async() => {
+  it('should sort data correctly', async () => {
     fetchMock.mockResponseOnce(JSON.stringify(data));
 
     await sortableTable.render();
