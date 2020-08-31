@@ -4,15 +4,16 @@ const BACKEND_URL = 'https://course-js.javascript.ru';
 export default class ColumnChart {
   element = document.createElement("div");
   chartHeight = 50;
+  scaleMaxValue = 50;
   subElements = {};
 
   constructor({
     url = "api/dashboard/orders",
     range = {
-      from: new Date('2020-04-06'),
-      to: new Date('2020-05-06'),
+      from: (new Date()).setMonth(new Date().getMonth() - 1),
+      to: new Date()
     },
-    label = "Total Orders",
+    label = "",
     formatHeading = (data) => data,
     link = "#",
   } = {}) {
@@ -39,10 +40,7 @@ export default class ColumnChart {
   }
 
   async update(from, to) {
-    this.range = {
-      from: from,
-      to: to,
-    };
+    this.range = { from, to };
     await this.loadData();
   }
 
@@ -57,6 +55,7 @@ export default class ColumnChart {
   }
 
   render = () => {
+
     this.element.className = Object.keys(this.data).length === 0
       ? "column-chart_loading"
       : "column-chart";
@@ -94,7 +93,7 @@ export default class ColumnChart {
 
   getColumnProp(item) {
     const maxValue = Math.max(...Object.values(this.data));
-    const scale = 50 / maxValue;
+    const scale = this.scaleMaxValue;
 
     return {
       percent: ((item / maxValue) * 100).toFixed(0) + "%",
